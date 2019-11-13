@@ -1,0 +1,25 @@
+.movies-list {
+  width: 96%;
+  margin: 0 auto;
+}
+
+.example-container {
+  margin-left: 12px;
+  width: 96%;
+  // height: 400px;
+  // overflow: auto;
+}
+
+table {
+  width: 96%;
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-spinner {
+    //margin: 0 auto;
+  }
+}

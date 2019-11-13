@@ -10,10 +10,48 @@ import { FormsModule } from '@angular/forms';
 import { TodosFiltersPipe } from './shared/todos-filters.pipe';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AppRoutingModule } from './app-routing.module';
+import { MoviesDataTableComponent } from './movies/movies-data-table/movies-data-table.component';
+import {
+  MatBadgeModule,
+  MatButtonModule,
+  MatCardModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatSortModule,
+  MatTableModule,
+  MatToolbarModule,
+} from '@angular/material';
 
 @NgModule({
-  declarations: [AppComponent, TodosComponent, TodoFormComponent, TodosFiltersPipe],
-  imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, FormsModule, ScrollingModule, AppRoutingModule],
+  declarations: [AppComponent, TodosComponent, TodoFormComponent, TodosFiltersPipe, MoviesDataTableComponent],
+  imports: [
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    MatBadgeModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
+    MatToolbarModule,
+    ScrollingModule,
+    MatProgressBarModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,68 @@
+<div class="movies-list">
+  <mat-card>
+    <mat-card-content>
+      <mat-paginator
+        #paginator
+        [length]="dataSource.count$ | async"
+        [pageSize]="10"
+        [pageSizeOptions]="[3, 5, 10, 25, 50]"
+        [showFirstLastButtons]="true"
+      ></mat-paginator>
+
+      <!-- New part: this is the search box -->
+      <mat-form-field class="example-form-field">
+        <label>
+          <input matInput #input placeholder="Search movies" />
+        </label>
+        <button mat-button *ngIf="value$ | async" matSuffix mat-icon-button aria-label="Clear" (click)="clearValue()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!--    <mat-form-field class="example-form-field">-->
+      <!--      <input matInput type="text" placeholder="Clearable input" [(ngModel)]="value">-->
+      <!--      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">-->
+      <!--        <mat-icon>close</mat-icon>-->
+      <!--      </button>-->
+      <!--    </mat-form-field>-->
+
+      <section *ngIf="dataSource.loading$ | async">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </section>
+      <!--    <div class="spinner-container" *ngIf="dataSource.loading$ | async">-->
+      <!--      <mat-spinner></mat-spinner>-->
+      <!--    </div>-->
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        matSort
+        matSortActive="name"
+        matSortDirection="asc"
+        matSortDisableClear
+      >
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef># Id</th>
+          <td mat-cell *matCellDef="let movie">{{ movie.id }}</td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let movie">{{ movie.name }}</td>
+        </ng-container>
+        <!-- Director Column -->
+        <ng-container matColumnDef="director">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Director</th>
+          <td mat-cell *matCellDef="let movie">{{ movie.director }}</td>
+        </ng-container>
+        <!-- Rating Column -->
+        <ng-container matColumnDef="rating">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Rating</th>
+          <td mat-cell *matCellDef="let movie">{{ movie.rating }}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>

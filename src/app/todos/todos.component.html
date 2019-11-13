@@ -1,30 +1,31 @@
-<div *ngIf="!loading">
-  <div class="filter">
-    <input
-      type="text"
-      placeholder="Filter todo by title"
-      [(ngModel)]="searchString"
-    />
-  </div>
+<div class="todos-list">
+  <mat-card>
+    <mat-card-content>
+      <div *ngIf="!loading">
+        <div class="filter">
+          <input type="text" placeholder="Filter todo by title" [(ngModel)]="searchString" />
+        </div>
 
-  <ul *ngIf="todoService.todos.length; else noTodos">
-    <li *ngFor="let todo of todoService.todos | todosFilter: searchString; let i = index">
-      {{ i + 1 }}
-      <input type="checkbox" [checked]="todo.completed" (change)="onChange(todo.id)"/>
-      <span [class.done]="todo.completed">
-          {{ todo.title }}
-        </span>
-      <small>{{ todo.date| date: "medium" }}</small>
-      <button class="rm" (click)="removeTodo(todo.id)">&times;</button>
+        <ul *ngIf="todoService.todos.length; else noTodos">
+          <li *ngFor="let todo of todoService.todos | todosFilter: searchString; let i = index">
+            {{ i + 1 }}
+            <input type="checkbox" [checked]="todo.completed" (change)="onChange(todo.id)" />
+            <span [class.done]="todo.completed">
+              {{ todo.title }}
+            </span>
+            <small>{{ todo.date | date: 'medium' }}</small>
+            <button class="rm" (click)="removeTodo(todo.id)">&times;</button>
+          </li>
+        </ul>
 
-    </li>
-  </ul>
+        <ng-template #noTodos>
+          <p style="text-align: center">There is no Todo now !</p>
+        </ng-template>
+      </div>
 
-  <ng-template #noTodos>
-    <p style="text-align: center">There is no Todo now !</p>
-  </ng-template>
+      <div *ngIf="loading">Loading ...</div>
+
+      <app-todo-form></app-todo-form>
+    </mat-card-content>
+  </mat-card>
 </div>
-
-<div *ngIf="loading">Loading ...</div>
-
-<app-todo-form></app-todo-form>
